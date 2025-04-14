@@ -6,6 +6,6 @@ import Schedule from './Schedule.jsx'
 const opponent = ['Michigan', 'Ohio State', 'Penn State', 'Wisconsin', 'Iowa', 'Nebraska', 'Northwestern', 'Illinois', 'Purdue', 'Maryland', 'Rutgers']
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Schedule school="Michigan State" opponents={opponent}></Schedule>
+    <App></App>
   </StrictMode>,
 )
