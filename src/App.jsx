@@ -9,7 +9,10 @@ function App() {
 
   return (
     <>
-      
+      <h1>Big Ten Football Future Matchups</h1>
+
+      <p>Input a Big Ten Team</p>
+      <input type="text" id="team" name="team" title="Input the name of a Big Ten University" placeholder="Ex: Michigan State University" />
     </>
   )
 }
