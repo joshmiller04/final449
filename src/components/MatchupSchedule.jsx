@@ -7,7 +7,7 @@ const MatchupSchedule = ({ team }) => {
   useEffect(() => {
     const fetchGames = async () => {
       const { data, error } = await supabase
-        .from('22025-2026 Big Ten College Football Schedule') 
+        .from('big_ten_2025_schedule') 
         .select('team, date, location, opponent')
         .ilike('team', `%${team}%`);  
 
