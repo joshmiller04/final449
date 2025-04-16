@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../services/supabaseClient.js';
+import { supabase } from '../services/supabaseClient';
 
 const MatchupSchedule = ({ team }) => {
   const [games, setGames] = useState([]);
