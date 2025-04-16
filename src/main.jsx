@@ -7,6 +7,7 @@ import MatchupSchedule from './components/MatchupSchedule.jsx'
 const opponent = ['Michigan', 'Ohio State', 'Penn State', 'Wisconsin', 'Iowa', 'Nebraska', 'Northwestern', 'Illinois', 'Purdue', 'Maryland', 'Rutgers']
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <MatchupSchedule></MatchupSchedule>
+    <App />
+
   </StrictMode>,
 )
