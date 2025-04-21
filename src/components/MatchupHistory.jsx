@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import MatchupSchedule from "./MatchupSchedule";
 import { fetchMatchupHistory } from "./fetchMatchupsAPI";
 
-function Schedule() {
+function MatchupHistory() {
   const { school } = useParams();
   const [history, setHistory] = useState([]);
 
@@ -15,7 +15,7 @@ function Schedule() {
 
   return (
     <>
-      <MatchupSchedule team={school} /> {/* Future matchups from Supabase */}
+      
 
       <div className="p-3 bg-dark text-white rounded mt-4">
         <h4>{school} Past Matchups</h4>
@@ -35,4 +35,4 @@ function Schedule() {
   );
 }
 
-export default Schedule;
+export default MatchupHistory;
