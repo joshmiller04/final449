@@ -1,25 +1,38 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-const opponents = ['Michigan', 'Ohio State', 'Penn State', 'Wisconsin', 'Iowa', 'Nebraska', 'Northwestern', 'Illinois', 'Purdue', 'Maryland', 'Rutgers']
-
+import MatchupSchedule from './components/MatchupSchedule';
+import { fetchMatchupHistory } from './services/fetchMatchupsAPI';
 
 function Schedule() {
-    const { school } = useParams();
+  const { school } = useParams();
+  const [history, setHistory] = useState([]);
 
-    const opponentList = opponents.map( opponent =>
-        <li>
-            {opponent}
-        </li>
-    )
-    return (
-        <>
-            <h2>{school} 2025-2026 Schedule</h2>
-            <ul>
-                {opponentList}
-            </ul>
-        </>
-    )
+  useEffect(() => {
+    fetchMatchupHistory(school)
+      .then(setHistory)
+      .catch((err) => console.error('API Error:', err));
+  }, [school]);
+
+  return (
+    <>
+      <MatchupSchedule team={school} /> {/* Future matchups from Supabase */}
+
+      <div className="p-3 bg-dark text-white rounded mt-4">
+        <h4>{school} Past Matchups</h4>
+        {history.length === 0 ? (
+          <p>No past matchups found.</p>
+        ) : (
+          <ul className="list-unstyled">
+            {history.map((game, i) => (
+              <li key={i}>
+                {game.date} vs. {game.opponent} — {game.score} ({game.result})
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </>
+  );
 }
-
 
 export default Schedule;
