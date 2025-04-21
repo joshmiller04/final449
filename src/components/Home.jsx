@@ -18,7 +18,6 @@ function Home() {
     
         input?.addEventListener('keydown', handleKey);
     
-        // Clean up event listener when component unmounts
         return () => input?.removeEventListener('keydown', handleKey);
       }, []);
     
