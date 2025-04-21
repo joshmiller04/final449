@@ -1,6 +1,6 @@
 // src/services/fetchMatchupsAPI.js
 export const fetchMatchupHistory = async (team) => {
-    const API_KEY = 'YOUR_API_KEY_HERE';
+    const API_KEY = 'jtpzZ6Nx6FCjfSBPYLuMDh8lc5NiIoyLDwEVkdoz21H5j/uLZP4CFCDNfLqIfnIk';
     const BASE_URL = 'https://api.collegefootballdata.com';
     const currentYear = new Date().getFullYear() - 1;
   
