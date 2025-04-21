@@ -22,8 +22,8 @@ function Home() {
       }, []);
     
     return (
-        <>
-            <h1 className="header">Big Ten Football Future Matchups</h1>
+        <main id="main">
+            <h1 className="header">2025-2026 Big Ten Football Matchups</h1>
 
             <p>Input a Big Ten Team</p>
             <input
@@ -33,7 +33,7 @@ function Home() {
             title="Input the name of a Big Ten University"
             placeholder="Ex: Michigan State University"
             />
-        </>
+        </main>
     );
 }
 
