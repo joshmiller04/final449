@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import MatchupSchedule from './components/MatchupSchedule';
-import { fetchMatchupHistory } from './services/fetchMatchupsAPI';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import MatchupSchedule from "./MatchupSchedule";
+import { fetchMatchupHistory } from "../components/fetchMatchupsAPI";
 
 function Schedule() {
   const { school } = useParams();
