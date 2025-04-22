@@ -52,19 +52,7 @@ const MatchupSchedule = () => {
         >
           ← Back to Home
         </button>
-        <button
-          onClick={goToHistory}
-          style={{
-            padding: '0.5rem 1rem',
-            backgroundColor: '#006644',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer'
-          }}
-        >
-          View All Past Matchups
-        </button>
+
       </div>
 
       <div className="p-3 bg-success text-white rounded">
