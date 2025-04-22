@@ -6,7 +6,6 @@ const MatchupSchedule = () => {
   let { school } = useParams();
   const navigate = useNavigate();
 
-  // Normalize the input string for display purposes
   school = school.trim().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   const [games, setGames] = useState([]);
@@ -16,8 +15,8 @@ const MatchupSchedule = () => {
     const fetchGames = async () => {
       const { data, error } = await supabase
         .from('big_ten_2025_schedule')
-        .select('team, date, opponent, location') 
-        .ilike('team', `%${school}%`); 
+        .select('team, date, opponent, location')
+        .ilike('team', `%${school}%`);
 
       if (error) {
         console.error('Supabase error:', error.message);
@@ -64,7 +63,7 @@ const MatchupSchedule = () => {
             cursor: 'pointer'
           }}
         >
-          View Past Matchups
+          View All Past Matchups
         </button>
       </div>
 
@@ -76,7 +75,12 @@ const MatchupSchedule = () => {
             <li>Multiple schools detected! Please enter a complete school name.</li>
           ) : games.length > 0 ? (
             games.map((game, i) => (
-              <li key={i} className="mb-2">
+              <li
+                key={i}
+                className="mb-2"
+                onClick={() => navigate('/matchuphistory/' + encodeURIComponent(school))}
+                style={{ cursor: 'pointer', textDecoration: 'underline' }}
+              >
                 <strong>{game.date}</strong> — {game.location} vs. {game.opponent}
               </li>
             ))
