@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../services/supabaseclient.js';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-
-const goToHistory = (school) => {
-  
-  useEffect(() => {
-    navigate()
-  })
-}
+import { useParams, useNavigate } from 'react-router-dom';
 
 const MatchupSchedule = () => {
-  // Get school passed in path, trim whitespace at each end of input, and capitalize first letter of each word for display purposes
   let { school } = useParams();
-  school = school.trim().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   const navigate = useNavigate();
+
+  // Normalize the input string for display purposes
+  school = school.trim().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   const [games, setGames] = useState([]);
   const [error, setError] = useState(null);
@@ -39,26 +32,51 @@ const MatchupSchedule = () => {
     }
   }, [school]);
 
-  const goToHistory = (school) => {
+  const goToHistory = () => {
     navigate('/matchuphistory/' + encodeURIComponent(school));
-  }
+  };
 
   return (
     <>
-      <a href="/">Home</a>
+      <div style={{ marginBottom: '1rem' }}>
+        <button
+          onClick={() => navigate('/')}
+          style={{
+            marginRight: '1rem',
+            padding: '0.5rem 1rem',
+            backgroundColor: '#0088CE',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          ← Back to Home
+        </button>
+        <button
+          onClick={goToHistory}
+          style={{
+            padding: '0.5rem 1rem',
+            backgroundColor: '#006644',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          View Past Matchups
+        </button>
+      </div>
+
       <div className="p-3 bg-success text-white rounded">
         <h4>{school} 2025-2026 Schedule</h4>
         {error && <p className="text-danger">Error: {error}</p>}
         <ul className="list-unstyled">
           {games.length > 12 ? (
-            <li>Multiple schools detected! Please enter complete school name.</li>
+            <li>Multiple schools detected! Please enter a complete school name.</li>
           ) : games.length > 0 ? (
             games.map((game, i) => (
-              <li
-                key={i}
-                className="mb-2"
-                onClick={() => goToHistory(school)}
-                style={{ cursor: 'pointer' }}>
+              <li key={i} className="mb-2">
                 <strong>{game.date}</strong> — {game.location} vs. {game.opponent}
               </li>
             ))
