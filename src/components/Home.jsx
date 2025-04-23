@@ -38,7 +38,7 @@ function Home() {
         id="team"
         name="team"
         title="Input the name of a Big Ten University"
-        placeholder="Ex: Michigan State University"
+        placeholder="Ex: Michigan State"
       />
 
       <button onClick={handleButtonClick} style={{ marginTop: '1rem' }}>
