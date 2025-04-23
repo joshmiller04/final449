@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/schedule/:school" element={<MatchupSchedule />} />
-          <Route path="/matchuphistory/:school" element={<MatchupHistory />}/>
+          <Route path="/matchuphistory/:school/:opponent" element={<MatchupHistory />}/>
         </Routes>
       </Router>
     </>
