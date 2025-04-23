@@ -37,7 +37,7 @@ function MatchupHistory() {
   return (
     <>
       <button
-        onClick={() => navigate('/')}
+        onClick={() => navigate('/schedule/' + encodeURIComponent(school))}
         style={{
           marginBottom: "1rem",
           padding: "0.5rem 1rem",
@@ -48,7 +48,7 @@ function MatchupHistory() {
           cursor: "pointer"
         }}
       >
-        ← Back to Home
+        ← Back to Schedule
       </button>
 
       <h2>{school} VS. {opponent} <br /> 2015 - 2024  Match-ups History</h2>
