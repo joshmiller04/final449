@@ -2,21 +2,26 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MatchupSchedule from "./MatchupSchedule";
 import { fetchMatchupHistory } from "./fetchMatchupsAPI";
+import "./MatchupHistory.css";
 
 function MatchupHistory() {
   const { school, opponent } = useParams();
   const navigate = useNavigate();
   const [history, setHistory] = useState([]);
-  //console.log("School:", school);
-  //console.log("Opponent:", opponent);
-  
-  
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchMatchupHistory(school, opponent)
-      .then(setHistory)
-      .catch((err) => console.error('API Error:', err));
-  }, [school]);
+      .then((data) => {
+        setHistory(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error('API Error:', err)
+        setIsLoading(false);
+      });
+  }, [school, opponent]);
 
   const SeasonType = (seasonType) => { return seasonType === "regular" ? "Regular Season" : "Postseason"}
 
@@ -41,6 +46,11 @@ function MatchupHistory() {
 
   return (
     <>
+      {isLoading && (
+        <div className="loading-overlay">
+          <div className="spinner" />
+        </div>
+      )}
       <button
         onClick={() => navigate('/schedule/' + encodeURIComponent(school))}
         style={{
@@ -59,19 +69,20 @@ function MatchupHistory() {
       <h2>{school} VS. {opponent} <br /> 2015 - 2024  Match-ups History</h2>
       <ul>
         {
-          history.length === 0 ? (
-            <h4>No Match-ups History</h4>
-          ) : (
-            history.map((game, i) => (
-              <li
-                key={i}
-                style={{
-                  color: game.winner === school ? "green" : "red",
-                }}>
-                  <h4>{Matchup(game)}</h4>
-              </li>
+          isLoading ? (<h4>Wait a second ......</h4>) : (
+            history.length === 0 ? (
+              <h4>No Match-ups History</h4>
+            ) : (
+              history.map((game, i) => (
+                <li
+                  key={i}
+                  style={{
+                    color: game.winner === school ? "green" : "red",
+                  }}>
+                    <h4>{Matchup(game)}</h4>
+                </li>
+              ))
             ))
-          )
         }
       </ul>
 
