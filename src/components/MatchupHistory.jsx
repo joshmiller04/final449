@@ -42,8 +42,6 @@ function MatchupHistory() {
     return `${game.season} - ${game.season + 1} ${SeasonType(game.seasonType)}: ${Score(game)} ${Location(game.homeTeam, game.neutralSite)} ${Winner(game.winner)}`
   }
 
-  console.log("Matchup History:", history);
-
   return (
     <>
       {isLoading && (
@@ -51,17 +49,16 @@ function MatchupHistory() {
           <div className="spinner" />
         </div>
       )}
-      <button
-        onClick={() => navigate('/schedule/' + encodeURIComponent(school))}
-        style={{
-          marginBottom: "1rem",
-          padding: "0.5rem 1rem",
-          backgroundColor: "#0088CE",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer"
-        }}
+      <button className="goTo" onClick={() => navigate('/schedule/' + encodeURIComponent(school))}
+        // style={{
+        //   marginBottom: "1rem",
+        //   padding: "0.5rem 1rem",
+        //   backgroundColor: "#0088CE",
+        //   color: "white",
+        //   border: "none",
+        //   borderRadius: "4px",
+        //   cursor: "pointer"
+        // }}
       >
         ← Back to Schedule
       </button>
@@ -85,6 +82,10 @@ function MatchupHistory() {
             ))
         }
       </ul>
+
+      <button className="goTo" onClick={() => navigate('/schedule/' + encodeURIComponent(opponent))}>
+        ← Go to {opponent} Schedule
+      </button>
 
       {/* <div className="p-3 bg-dark text-white rounded mt-4">
         <h4>{school} Past Matchups</h4>

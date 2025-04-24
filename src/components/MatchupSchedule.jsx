@@ -57,7 +57,7 @@ const MatchupSchedule = () => {
       </div>
 
       <div className="p-3 bg-success text-white rounded">
-        <h4>{school} 2025-2026 Schedule</h4>
+        <h2>{school} 2025-2026 Schedule</h2>
         {error && <p className="text-danger">Error: {error}</p>}
         <ul className="list-unstyled">
           {games.length > 12 ? (
