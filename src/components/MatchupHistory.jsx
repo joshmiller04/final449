@@ -26,12 +26,15 @@ function MatchupHistory() {
     return `${homeScore} - ${awayScore}`;
   }
 
-  const Location = (loc) => {return loc === school ? "Home" : "Away"}
+  const Location = (location, neutralSite) => {
+    if (neutralSite) return "Neutral Field"
+    return location === school ? "Home" : "Away"
+  }
 
   const Winner = (winner) => { return winner === school ? "Win" : "Loss" }
 
   const Matchup = (game) => {
-    return `${game.season} - ${game.season + 1} ${SeasonType(game.seasonType)}: ${Score(game)} ${Location(game.homeTeam)} ${Winner(game.winner)}`
+    return `${game.season} - ${game.season + 1} ${SeasonType(game.seasonType)}: ${Score(game)} ${Location(game.homeTeam, game.neutralSite)} ${Winner(game.winner)}`
   }
 
   console.log("Matchup History:", history);
