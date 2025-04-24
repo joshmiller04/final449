@@ -18,6 +18,8 @@ function MatchupHistory() {
       .catch((err) => console.error('API Error:', err));
   }, [school]);
 
+  const SeasonType = (seasonType) => { return seasonType === "regular" ? "Regular Season" : "Postseason"}
+
   const Score = (game) => {
     const homeScore = game.homeTeam === school ? game.homeScore : game.awayScore;
     const awayScore = game.homeTeam === opponent ? game.homeScore : game.awayScore;
@@ -29,7 +31,7 @@ function MatchupHistory() {
   const Winner = (winner) => { return winner === school ? "Win" : "Loss" }
 
   const Matchup = (game) => {
-    return `${game.season} - ${game.season + 1} season: ${Score(game)} ${Location(game.homeTeam)} ${Winner(game.winner)}`
+    return `${game.season} - ${game.season + 1} ${SeasonType(game.seasonType)}: ${Score(game)} ${Location(game.homeTeam)} ${Winner(game.winner)}`
   }
 
   console.log("Matchup History:", history);
