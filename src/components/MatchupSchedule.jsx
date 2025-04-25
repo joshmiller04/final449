@@ -16,7 +16,7 @@ const MatchupSchedule = () => {
       const { data, error } = await supabase
         .from('big_ten_2025_schedule')
         .select('team, date, opponent, location')
-        .ilike('team', `%${school}%`);
+        .eq('team', school);
 
       if (error) {
         console.error('Supabase error:', error.message);
