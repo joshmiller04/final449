@@ -58,9 +58,7 @@ const MatchupSchedule = () => {
         >
           ← Back to Home
         </button>
-
       </div>
-
       <div className="p-3 bg-success text-white rounded">
         <h2>{school} 2025-2026 Schedule</h2>
         {error && <p className="text-danger">Error: {error}</p>}
