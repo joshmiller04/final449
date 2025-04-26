@@ -11,20 +11,19 @@ function Home() {
 
     const handleKey = (event) => {
       if (event.key === 'Enter') {
-        const team = event.target.value;
+        const team = document.getElementById('team-select').value
         if (team) {
           navigate('/schedule/' + encodeURIComponent(team));
         }
       }
     };
 
-    input?.addEventListener('keydown', handleKey);
+    document.addEventListener('keydown', handleKey);
     return () => input?.removeEventListener('keydown', handleKey);
   }, [navigate]);
 
   const handleButtonClick = () => {
-    const input = document.getElementById('team');
-    const team = input?.value;
+    const team = document.getElementById('team-select').value
     if (team) {
       navigate('/schedule/' + encodeURIComponent(team));
     }
@@ -36,14 +35,33 @@ function Home() {
     <main id="main">
       <h1 className="header">2025-2026 Big Ten Football Matchups</h1>
 
-      <p>Input a Big Ten Team</p>
-      <input
+      <p>Select a Big Ten School</p>
+      <select
         type="text"
-        id="team"
-        name="team"
-        title="Input the name of a Big Ten University"
+        id="team-select"
+        name="teams"
+        title="Select the name of a Big Ten university"
         placeholder="Ex: Michigan State"
-      />
+      >
+        <option value='Illinois'>University of Illinois</option>
+        <option value='Indiana'>Indiana University</option>
+        <option value='Iowa'>University of Iowa</option>
+        <option value='Maryland'>University of Maryland</option>
+        <option value='Michigan'>University of Michigan</option>
+        <option value='Michigan State'>Michigan State University</option>
+        <option value='Minnesota'>University of Minnesota</option>
+        <option value='Nebraska'>University of Nebraska</option>
+        <option value='Northwestern'>Northwestern University</option>
+        <option value='Ohio State'>Ohio State University</option>
+        <option value='Oregon'>University of Oregon</option>
+        <option value='Penn State'>Pennsylvania State University</option>
+        <option value='Purdue'>Purdue University</option>
+        <option value='Rutgers'>Rutgers University</option>
+        <option value='UCLA'>University of California, Los Angeles</option>
+        <option value='USC'>University of Southern California</option>
+        <option value='Wisconsin'>University of Wisconsin</option>
+        <option value='Washington'>University of Washington</option>
+      </select>
 
       <div style={{
         display: 'flex',
@@ -52,36 +70,6 @@ function Home() {
         alignItems: 'center'
       }}>
         <button onClick={handleButtonClick}>Go</button>
-        <button onClick={handleShowSchools}>Show School Names</button>
-      </div>
-      <div className={`popupBox ${displaySchools ? 'active' : ''}`}>
-        <div className="schoolList">
-          <button onClick={handleShowSchools} className="closeBox">
-            X
-          </button>
-          <h2>Big Ten Schools</h2>
-          <ul>
-            <li>Illinois - University of Illinois</li>
-            <li>Indiana - Indian University</li>
-            <li>Iowa - University of Iowa</li>
-            <li>Maryland - University of Maryland</li>
-            <li>Michigan - University of Michigan</li>
-            <li>Michigan State - Michigan State University</li>
-            <li>Minnesota - University of Minnesota</li>
-            <li>Nebraska - University of Nebraska-Lincoln</li>
-            <li>Northwestern - Northwestern University</li>
-            <li>Ohio State - Ohio State University</li>
-            <li>Oregon - University of Oregon</li>
-            <li>Penn State - Pennsylvania State University</li>
-            <li>Purdue - Purdue University</li>
-            <li>Rutgers - Rutgers University-New Brunswick</li>
-            <li>UCLA - University of California Los Angeles</li>
-            <li>USC - University of Southern California</li>
-            <li>Wisconsin - University of Wisconsin-Madison</li>
-            <li>Washington - University of Washington</li>
-            <h4 style={{color: "blue"}}>Please input the left side school name</h4>
-          </ul>
-        </div>
       </div>
     </main>
   );

@@ -5,6 +5,12 @@ import { LoadingOverlay } from "./LoadingOverlay.jsx"
 
 const MatchupSchedule = () => {
   let { school } = useParams();
+  if (school.toLowerCase() == "ucla" || school.toLowerCase() == "usc") {
+    school = school.toUpperCase();
+  }
+  else {
+    school = school.trim().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  }
   const navigate = useNavigate();
 
   school = school.trim().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -16,16 +22,32 @@ const MatchupSchedule = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchGames = async () => {
-      const { data, error } = await supabase
-        .from('big_ten_2025_schedule')
-        .select('team, date, opponent, location')
-        .eq('team', school);
+      if (school != "Michigan") {
+        const { data, error } = await supabase
+          .from('big_ten_2025_schedule')
+          .select('team, date, opponent, location')
+          .ilike('team', `%${school}%`);
 
-      if (error) {
-        console.error('Supabase error:', error.message);
-        setError(error.message);
-      } else {
-        setGames(data);
+        if (error) {
+          console.error('Supabase error:', error.message);
+          setError(error.message);
+        } else {
+          setGames(data);
+        }
+      }
+      else {
+        const { data, error } = await supabase
+          .from('big_ten_2025_schedule')
+          .select('team, date, opponent, location')
+          .ilike('team', `%${school}%`)
+          .neq('team', 'Michigan State');
+
+          if (error) {
+            console.error('Supabase error:', error.message);
+            setError(error.message);
+          } else {
+            setGames(data);
+          }
       }
       setIsLoading(false);
     };
@@ -59,16 +81,13 @@ const MatchupSchedule = () => {
           ← Back to Home
         </button>
       </div>
-      <div className="p-3 bg-success text-white rounded">
-        <h2>{school} 2025-2026 Schedule</h2>
+
+      <div className="p-3 text-white rounded">
+        <h4>{school} 2025-2026 Schedule</h4>
         {error && <p className="text-danger">Error: {error}</p>}
         {isLoading ? ( <h3> Loading ......</h3> ) : (
           <ul className="list-unstyled">
-            {games.length > 12 ? (
-              <li>Multiple schools detected! Please enter a complete school name.</li>
-            ) : games.length > 0 ? (
-              
-              games.map((game, i) => (
+            {games.map((game, i) => (
                 <li
                   key={i}
                   className="mb-2"
@@ -77,10 +96,7 @@ const MatchupSchedule = () => {
                 >
                   <strong>{game.date}</strong> — {game.location} vs. {game.opponent}
                 </li>
-              ))
-            ) : (
-              <li>No upcoming games found.</li>
-            )}
+              ))}
           </ul>
         )}
       </div>

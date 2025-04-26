@@ -13,27 +13,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  min-width: 320px;
-  min-height: 100vh;
-  background: url('public/images/big-ten-logo.jpg') center;
-  background-size: cover;
-  overflow: hidden;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-  color: #0088CE;
+  color: #1F1F1F;
 }
 
 p {
-  color: #0088CE;
+  color: #1F1F1F;
   margin: auto;
   margin-bottom: 2vh;
   font-size: 1.8em;
+  font-weight: bold;
 }
 
 @media (prefers-color-scheme: light) {
