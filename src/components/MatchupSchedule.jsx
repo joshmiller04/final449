@@ -36,8 +36,8 @@ const MatchupSchedule = () => {
   }, [school]);
   console.log('Games:', games);
 
-  const goToHistory = () => {
-    navigate('/matchuphistory/' + encodeURIComponent(school));
+  const goToHistory = (school, opponent) => {
+    navigate('/matchuphistory/' + encodeURIComponent(school) + "/" + encodeURIComponent(opponent));
   };
 
   return (
@@ -74,7 +74,7 @@ const MatchupSchedule = () => {
                 <li
                   key={i}
                   className="mb-2"
-                  onClick={() => navigate(`/matchuphistory/${encodeURIComponent(school)}/${encodeURIComponent(game.opponent)}`)}
+                  onClick={() => goToHistory(school, game.opponent)}
                   style={{ cursor: 'pointer', textDecoration: 'underline' }}
                 >
                   <strong>{game.date}</strong> — {game.location} vs. {game.opponent}
