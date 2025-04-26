@@ -46,17 +46,7 @@ function MatchupHistory() {
   return (
     <>
       {isLoading && ( <LoadingOverlay /> )}
-      <button className="goTo" onClick={() => navigate('/schedule/' + encodeURIComponent(school))}
-        // style={{
-        //   marginBottom: "1rem",
-        //   padding: "0.5rem 1rem",
-        //   backgroundColor: "#0088CE",
-        //   color: "white",
-        //   border: "none",
-        //   borderRadius: "4px",
-        //   cursor: "pointer"
-        // }}
-      >
+      <button className="goTo" onClick={() => navigate('/schedule/' + encodeURIComponent(school))}>
         ← Back to Schedule
       </button>
 
@@ -83,21 +73,6 @@ function MatchupHistory() {
       <button className="goTo" onClick={() => navigate('/schedule/' + encodeURIComponent(opponent))}>
         ← Go to {opponent} Schedule
       </button>
-
-      {/* <div className="p-3 bg-dark text-white rounded mt-4">
-        <h4>{school} Past Matchups</h4>
-        {history.length === 0 ? (
-          <p>No past matchups found.</p>
-        ) : (
-          <ul className="list-unstyled">
-            {history.map((game, i) => (
-              <li key={i}>
-                {game.date} vs. {game.opponent} — {game.score} ({game.result})
-              </li>
-            ))}
-          </ul>
-        )}
-      </div> */}
     </>
   );
 }

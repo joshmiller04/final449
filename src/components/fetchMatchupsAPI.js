@@ -19,19 +19,5 @@ export const fetchMatchupHistory = async (team, opponent) => {
   
     const data = await response.json();
     return data.games;
-  
-    return data.map((game) => ({
-      date: game.start_date?.split('T')[0],
-      opponent: game.home_team === team ? game.away_team : game.home_team,
-      result:
-        game.home_points > game.away_points
-          ? game.home_team === team
-            ? 'Win'
-            : 'Loss'
-          : game.away_team === team
-          ? 'Win'
-          : 'Loss',
-      score: `${game.home_points} - ${game.away_points}`,
-    }));
   };
   
