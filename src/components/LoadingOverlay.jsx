@@ -1,3 +1,5 @@
+import "./LoadingOverlay.css"
+
 export const LoadingOverlay = () => {
     return (
         <div className="loading-overlay">
