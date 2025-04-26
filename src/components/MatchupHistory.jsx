@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MatchupSchedule from "./MatchupSchedule";
 import { fetchMatchupHistory } from "./fetchMatchupsAPI";
+import {LoadingOverlay} from "./LoadingOverlay";
 import "./MatchupHistory.css";
 
 function MatchupHistory() {
@@ -44,11 +45,7 @@ function MatchupHistory() {
 
   return (
     <>
-      {isLoading && (
-        <div className="loading-overlay">
-          <div className="spinner" />
-        </div>
-      )}
+      {isLoading && ( <LoadingOverlay /> )}
       <button className="goTo" onClick={() => navigate('/schedule/' + encodeURIComponent(school))}
         // style={{
         //   marginBottom: "1rem",
@@ -66,7 +63,7 @@ function MatchupHistory() {
       <h2>{school} VS. {opponent} <br /> 2015 - 2024  Match-ups History</h2>
       <ul>
         {
-          isLoading ? (<h4>Wait a second ......</h4>) : (
+          isLoading ? (<h4>Loading ......</h4>) : (
             history.length === 0 ? (
               <h4>No Match-ups History</h4>
             ) : (
