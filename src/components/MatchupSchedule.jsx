@@ -70,7 +70,7 @@ const MatchupSchedule = () => {
         <h4 className="text-5xl text-blue-400 mt-15 mb-30">{school} 2025-2026 Schedule</h4>
         {error && <p className="text-danger">Error: {error}</p>}
         {isLoading ? ( <h3 className="text-3xl text-blue-400 mt-30"> Loading ......</h3> ) : (
-          <ul className="list-unstyled">
+          <ul className="list-unstyled px-70">
             {games.map((game, i) => (
                 <li
                   key={i}
