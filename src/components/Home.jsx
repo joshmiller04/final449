@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css'
 
 function Home() {
   const navigate = useNavigate();
@@ -29,19 +28,17 @@ function Home() {
     }
   };
 
-  const handleShowSchools = () => { setDisplaySchools(!displaySchools) };
-
   return (
-    <main id="main">
-      <h1 className="header">2025-2026 Big Ten Football Matchups</h1>
+    <main>
+      <h1 className="text-5xl text-blue-400 m-auto mt-10 mb-90">2025-2026 Big Ten Football Matchups</h1>
 
-      <p>Select a Big Ten School</p>
+      <p className="text-3xl text-blue-400 mb-5">Select a Big Ten School</p>
       <select
         type="text"
+        className="py-2 bg-gray-300 text-center text-lg mb-5 rounded cursor-pointer"
         id="team-select"
         name="teams"
         title="Select the name of a Big Ten university"
-        placeholder="Ex: Michigan State"
       >
         <option value='Illinois'>University of Illinois</option>
         <option value='Indiana'>Indiana University</option>
@@ -69,7 +66,7 @@ function Home() {
         gap: '1rem',
         alignItems: 'center'
       }}>
-        <button onClick={handleButtonClick}>Go</button>
+        <button className="px-19.5 py-4 bg-blue-400 text-lg text-white rounded hover:bg-blue-500 cursor-pointer" onClick={handleButtonClick}>Get 2025 Schedule</button>
       </div>
     </main>
   );

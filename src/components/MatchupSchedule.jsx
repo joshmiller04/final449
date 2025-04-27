@@ -68,31 +68,22 @@ const MatchupSchedule = () => {
       <div style={{ marginBottom: '1rem' }}>
         <button
           onClick={() => navigate('/')}
-          style={{
-            marginRight: '1rem',
-            padding: '0.5rem 1rem',
-            backgroundColor: '#0088CE',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer'
-          }}
+          className="px-10 py-2 bg-blue-400 text-lg text-white rounded hover:bg-blue-500 cursor-pointer mt-10"
         >
           ← Back to Home
         </button>
       </div>
 
-      <div className="p-3 text-white rounded">
-        <h4>{school} 2025-2026 Schedule</h4>
+      <div>
+        <h4 className="text-5xl text-blue-400 mt-15 mb-30">{school} 2025-2026 Schedule</h4>
         {error && <p className="text-danger">Error: {error}</p>}
-        {isLoading ? ( <h3> Loading ......</h3> ) : (
+        {isLoading ? ( <h3 className="text-3xl text-blue-400 mt-30"> Loading ......</h3> ) : (
           <ul className="list-unstyled">
             {games.map((game, i) => (
                 <li
                   key={i}
-                  className="mb-2"
+                  className="text-3xl text-blue-400 mb-2 cursor-pointer hover:text-white"
                   onClick={() => goToHistory(school, game.opponent)}
-                  style={{ cursor: 'pointer', textDecoration: 'underline' }}
                 >
                   <strong>{game.date}</strong> — {game.location} vs. {game.opponent}
                 </li>

@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { fetchMatchupHistory } from "./fetchMatchupsAPI";
 import {LoadingOverlay} from "./LoadingOverlay";
 import { supabase } from '../services/supabaseclient.js';
-import "./MatchupHistory.css";
 
 function MatchupHistory() {
   const { school, opponent } = useParams();
@@ -64,37 +63,36 @@ function MatchupHistory() {
   return (
     <>
       {isLoading && ( <LoadingOverlay /> )}
-      <button className="goTo" onClick={() => navigate('/schedule/' + encodeURIComponent(school))}>
-        ← Back to Schedule
+      <button className="px-10 py-2 bg-blue-400 text-lg text-white rounded hover:bg-blue-500 cursor-pointer mt-10" onClick={() => navigate('/schedule/' + encodeURIComponent(school))}>
+        ← Back to {school}'s Schedule
       </button>
-      <h2>{school} VS. {opponent} <br /> 2015 - 2024  Match-ups History</h2>
+      <h2 className="text-5xl text-blue-400 mt-15 mb-26">{school} VS. {opponent} <br /> 2015 - 2024  Match-ups History</h2>
       {isLoading ? (
-        <h3>Loading ......</h3>
+        <h3 className="text-3xl mt-30">Loading ......</h3>
       ) : (
         <>
           <ul>
             {
               history.length === 0 ? (
-                <h4>No Match-ups History</h4>
+                <h4 className="text-3xl text-blue-400 mt-30">No Match-ups History</h4>
               ) : (
                 history.map((game, i) => (
                   <li
                     key={i}
-                    style={{
-                      color: game.winner === school ? "green" : "red",
-                    }}>
-                      <h4>{Matchup(game)}</h4>
+                    className={game.winner === school ? 'text-green-500' : 'text-red-500'}
+                    >
+                      <h4 className="text-3xl mb-2">{Matchup(game)}</h4>
                   </li>
                 ))
               )
             }
           </ul>
           { isBigTenSchool ? ( 
-            <button className="goTo" onClick={() => navigate('/schedule/' + encodeURIComponent(opponent))}>
-              ← Go to {opponent} Schedule
+            <button className="px-10 py-2 bg-blue-400 text-lg text-white rounded hover:bg-blue-500 cursor-pointer mt-10" onClick={() => navigate('/schedule/' + encodeURIComponent(opponent))}>
+              ← Go to {opponent}'s Schedule
             </button>
           ) : (
-            <h4 style={{color: "purple"}}>Opponent is not a Big Ten School</h4>
+            <h4 className="mt-10 text-3xl text-red-500">Opponent is not a Big Ten School</h4>
           )
           }
         </>
