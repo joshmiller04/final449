@@ -68,7 +68,7 @@ function MatchupHistory() {
       </button>
       <h2 className="text-5xl text-blue-400 mt-15 mb-26">{school} VS. {opponent} <br /> 2015 - 2024  Match-ups History</h2>
       {isLoading ? (
-        <h3 className="text-3xl mt-30">Loading ......</h3>
+        <h3 className="text-3xl text-blue-400 mt-30">Loading ......</h3>
       ) : (
         <>
           <ul>
