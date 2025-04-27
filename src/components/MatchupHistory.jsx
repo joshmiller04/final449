@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchMatchupHistory } from "./fetchMatchupsAPI";
 import {LoadingOverlay} from "./LoadingOverlay";
-import { supabase } from '../services/supabaseclient.js';
+import { supabase } from '../services/supabaseClient.js';
 
 function MatchupHistory() {
   const { school, opponent } = useParams();

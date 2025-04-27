@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../services/supabaseclient.js';
+import { supabase } from '../services/supabaseClient.js';
 import { useParams, useNavigate } from 'react-router-dom';
 import { LoadingOverlay } from "./LoadingOverlay.jsx"
 
 const MatchupSchedule = () => {
   let { school } = useParams();
-  if (school.toLowerCase() == "ucla" || school.toLowerCase() == "usc") {
-    school = school.toUpperCase();
-  }
-  else {
-    school = school.trim().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  }
   const navigate = useNavigate();
-
-  school = school.trim().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   const [games, setGames] = useState([]);
   const [error, setError] = useState(null);
